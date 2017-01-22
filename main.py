@@ -48,16 +48,15 @@ days = [
 
 @app.template_filter('prettydate')
 def prettydate(courseobj):
-    datestring = ""
-    for day_index, day_abbr in days:
-        if courseobj.__dict__['_data'][day_index]:
-            datestring += day_abbr
+    datestring = "MWF"
+    # for day_index, day_abbr in days:
+    #     if courseobj.__dict__['_data'][day_index]:
+    #         datestring += day_abbr
 
     if courseobj.start_time:
-        start_time = courseobj.start_time.strftime("%I:%M %p").encode('utf-8')
-        end_time = courseobj.end_time.strftime("%I:%M %p").encode('utf-8')
-        datestring2 = " %s %s" % (start_time, end_time)
-        datestring += datestring2
+        start_time = courseobj.start_time.strftime("%I:%M %p")
+        end_time = courseobj.end_time.strftime("%I:%M %p")
+        datestring = start_time + " - " + end_time
 
     return datestring
 
