@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block body %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Instructor</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.classnum }}</td>
+            <td><a href="{{ url_for('get_textbooks', course_id=course.id) }}">{{ course.name }}</a></td>
+            <td>{{ course.instructor_first }} {{ course.instructor_mid if course.instructor_mid else '' }} {{ course.instructor_last }}</td>
+            <td>{{ course|prettydate }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('add_courses') }}" class="btn btn-default">Add course</a>
+{% endblock %}

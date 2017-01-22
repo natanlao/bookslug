@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block body %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Authors</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for textbook in textbooks %}
+        <tr>
+            <td>{{ ", ".join(textbook['Authors']) }}</td>
+            <td>{{ textbook['Title'] }}</td>
+            <td>{{ textbook['Year'] }}</td>
+            <td><a href="{{ url_for('buy_book', book_isbn=textbook['ISBN-13']) }}">I want this</a></td>
+            <td><a href="{{ url_for('sell_book', book_isbn=textbook['ISBN-13']) }}">I'm done with this</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

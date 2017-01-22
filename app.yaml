@@ -1,0 +1,16 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: main.app
+
+libraries:
+- name: MySQLdb
+  version: "latest"
+
+env_variables:
+    CLOUDSQL_CONNECTION_NAME: integral-kit-156308:us-central1:bookslug
+    CLOUDSQL_USER: root
+    CLOUDSQL_PASSWORD: chill phil
